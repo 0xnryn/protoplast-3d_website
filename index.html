@@ -317,8 +317,14 @@
             transition: transform 0.3s, color 0.3s;
         }
 
+        @keyframes gentleShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-3px); }
+            75% { transform: translateX(3px); }
+        }
+
         .service-card:hover .service-icon {
-            transform: scale(1.2);
+            animation: gentleShake 0.5s infinite;
             color: var(--light-accent);
         }
 
