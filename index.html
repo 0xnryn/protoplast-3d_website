@@ -4,759 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Protoplast.3D - Advanced Manufacturing Solutions</title>
-    <style>
-        :root {
-            --primary-color: #130e2e;
-            --secondary-color: #8273ff;
-            --accent-color: #5a42ff;
-            --light-accent: #aaa1ff;
-            --text-color: #ffffff;
-            --dark-text: #333333;
-            --section-padding: 80px 0;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--primary-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header Styles */
-        header {
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            background-color: var(--primary-color);
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text-color);
-            text-decoration: none;
-            position: relative;
-            animation: fadeInDown 1s ease-out;
-        }
-
-        .logo span {
-            color: var(--secondary-color);
-            animation: colorPulse 4s infinite alternate;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            animation: fadeInDown 1s ease-out 0.2s backwards;
-        }
-
-        .nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 16px;
-            transition: color 0.3s, transform 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary-color);
-            transform: translateY(-3px);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--secondary-color);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background-color: var(--text-color);
-            color: var(--primary-color);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--secondary-color);
-            color: var(--text-color);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(90, 66, 255, 0.3);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--text-color);
-            border: 2px solid var(--text-color);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--secondary-color);
-            border-color: var(--secondary-color);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(90, 66, 255, 0.3);
-        }
-
-        .btn-arrow {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-arrow .arrow {
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            transition: transform 0.3s;
-        }
-
-        .btn-arrow:hover .arrow {
-            transform: translateX(5px);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 80px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            min-height: 500px;
-            background: linear-gradient(135deg, var(--primary-color), #1f1846);
-            border-radius: 20px;
-            margin: 20px auto;
-            max-width: 1240px;
-            animation: fadeIn 1s ease-out;
-        }
-
-        .hero-content {
-            width: 100%;
-            padding: 0 50px;
-            z-index: 2;
-            text-align: center;
-        }
-
-        .tag {
-            background-color: var(--light-accent);
-            color: var(--primary-color);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 20px;
-            animation: scaleIn 0.5s ease-out, float 4s ease-in-out infinite;
-        }
-
-        .hero-title {
-            font-size: 42px;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            animation: fadeInUp 1s ease-out 0.3s backwards;
-        }
-
-        .hero-text {
-            margin-bottom: 30px;
-            font-size: 18px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeInUp 1s ease-out 0.5s backwards;
-        }
-
-        .service-list {
-            list-style: none;
-            margin-bottom: 30px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            animation: fadeInUp 1s ease-out 0.7s backwards;
-        }
-
-        .service-list li {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            background-color: rgba(255, 255, 255, 0.05);
-            padding: 10px 20px;
-            border-radius: 30px;
-            transition: transform 0.3s, background-color 0.3s;
-        }
-
-        .service-list li:hover {
-            transform: translateY(-5px);
-            background-color: var(--secondary-color);
-            cursor: pointer;
-        }
-
-        .service-list li:before {
-            content: "•";
-            color: var(--secondary-color);
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-right: 10px;
-        }
-
-        .service-list li:hover:before {
-            color: var(--text-color);
-        }
-
-        /* Services Section */
-        .services {
-            padding: var(--section-padding);
-        }
-
-        .section-title {
-            font-size: 36px;
-            margin-bottom: 20px;
-            text-align: center;
-            position: relative;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 3px;
-            background-color: var(--secondary-color);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: widthGrow 1s ease-out forwards;
-        }
-
-        @keyframes widthGrow {
-            from { width: 0; }
-            to { width: 80px; }
-        }
-
-        .section-subtitle {
-            text-align: center;
-            margin-bottom: 50px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeInUp 1s ease-out 0.2s backwards;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 30px;
-            transition: transform 0.5s, box-shadow 0.5s, background-color 0.5s;
-            animation: fadeInUp 1s ease-out;
-            animation-fill-mode: both;
-        }
-
-        .services-grid .service-card:nth-child(1) { animation-delay: 0.2s; }
-        .services-grid .service-card:nth-child(2) { animation-delay: 0.3s; }
-        .services-grid .service-card:nth-child(3) { animation-delay: 0.4s; }
-        .services-grid .service-card:nth-child(4) { animation-delay: 0.5s; }
-        .services-grid .service-card:nth-child(5) { animation-delay: 0.6s; }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .service-icon {
-            margin-bottom: 20px;
-            color: var(--secondary-color);
-            transition: transform 0.3s, color 0.3s;
-        }
-
-        @keyframes gentleShake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-3px); }
-            75% { transform: translateX(3px); }
-        }
-
-        .service-card:hover .service-icon {
-            animation: gentleShake 0.5s infinite;
-            color: var(--light-accent);
-        }
-
-        .service-icon svg {
-            width: 50px;
-            height: 50px;
-        }
-
-        .service-title {
-            font-size: 22px;
-            margin-bottom: 15px;
-            transition: color 0.3s;
-        }
-
-        .service-card:hover .service-title {
-            color: var(--light-accent);
-        }
-
-        .service-description {
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-
-        /* Materials Section */
-        .materials {
-            padding: var(--section-padding);
-            background-color: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            margin: 20px auto;
-            max-width: 1240px;
-            animation: fadeIn 1s ease-out;
-        }
-
-        .materials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 20px;
-        }
-
-        .material-item {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            transition: transform 0.3s, background-color 0.3s, color 0.3s;
-            animation: fadeInUp 0.5s ease-out;
-            animation-fill-mode: both;
-        }
-
-        .materials-grid .material-item:nth-child(1) { animation-delay: 0.1s; }
-        .materials-grid .material-item:nth-child(2) { animation-delay: 0.15s; }
-        .materials-grid .material-item:nth-child(3) { animation-delay: 0.2s; }
-        .materials-grid .material-item:nth-child(4) { animation-delay: 0.25s; }
-        .materials-grid .material-item:nth-child(5) { animation-delay: 0.3s; }
-        .materials-grid .material-item:nth-child(6) { animation-delay: 0.35s; }
-        .materials-grid .material-item:nth-child(7) { animation-delay: 0.4s; }
-        .materials-grid .material-item:nth-child(8) { animation-delay: 0.45s; }
-        .materials-grid .material-item:nth-child(9) { animation-delay: 0.5s; }
-        .materials-grid .material-item:nth-child(10) { animation-delay: 0.55s; }
-        .materials-grid .material-item:nth-child(11) { animation-delay: 0.6s; }
-        .materials-grid .material-item:nth-child(12) { animation-delay: 0.65s; }
-        .materials-grid .material-item:nth-child(13) { animation-delay: 0.7s; }
-        .materials-grid .material-item:nth-child(14) { animation-delay: 0.75s; }
-
-        .material-item:hover {
-            transform: translateY(-5px) scale(1.05);
-            background-color: var(--secondary-color);
-            color: white;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            padding: var(--section-padding);
-        }
-
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .pricing-card {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 30px;
-            transition: transform 0.5s, background-color 0.5s, box-shadow 0.5s;
-            animation: fadeInUp 1s ease-out;
-            animation-fill-mode: both;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pricing-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(130, 115, 255, 0.2) 0%, rgba(130, 115, 255, 0) 70%);
-            opacity: 0;
-            transition: opacity 0.5s;
-            pointer-events: none;
-        }
-
-        .pricing-card:hover::before {
-            opacity: 1;
-        }
-
-        .pricing-cards .pricing-card:nth-child(1) { animation-delay: 0.2s; }
-        .pricing-cards .pricing-card:nth-child(2) { animation-delay: 0.3s; }
-        .pricing-cards .pricing-card:nth-child(3) { animation-delay: 0.4s; }
-        .pricing-cards .pricing-card:nth-child(4) { animation-delay: 0.5s; }
-
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            background-color: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .pricing-title {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: var(--secondary-color);
-            transition: color 0.3s;
-        }
-
-        .pricing-card:hover .pricing-title {
-            color: var(--light-accent);
-        }
-
-        .pricing-price {
-            font-size: 32px;
-            margin-bottom: 15px;
-            transition: transform 0.3s;
-        }
-
-        .pricing-card:hover .pricing-price {
-            transform: scale(1.05);
-        }
-
-        .pricing-description {
-            margin-bottom: 25px;
-        }
-
-        .cta-section {
-            text-align: center;
-            margin-top: 50px;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .whatsapp-btn {
-            background-color: #25D366;
-            color: white;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 20px;
-            transition: all 0.3s;
-        }
-
-        .whatsapp-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
-        }
-
-        /* Footer */
-        footer {
-            padding: 50px 0;
-            background-color: rgba(0, 0, 0, 0.2);
-            margin-top: 80px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .footer-logo {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--text-color);
-        }
-
-        .footer-logo span {
-            color: var(--secondary-color);
-            animation: colorPulse 4s infinite alternate;
-        }
-
-        .footer-description {
-            margin-bottom: 20px;
-        }
-
-        .footer-links h4 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .footer-links h4::after {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 2px;
-            background-color: var(--secondary-color);
-            bottom: -10px;
-            left: 0;
-            animation: widthGrow 1s ease-out forwards;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-            transition: transform 0.3s;
-        }
-
-        .footer-links li:hover {
-            transform: translateX(5px);
-        }
-
-        .footer-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .footer-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -2px;
-            left: 0;
-            background-color: var(--secondary-color);
-            transition: width 0.3s;
-        }
-
-        .footer-links a:hover::after {
-            width: 100%;
-        }
-
-        .footer-links a:hover {
-            color: var(--secondary-color);
-        }
-
-        .copyright {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            animation: fadeIn 1s ease-out;
-        }
-
-        /* Animation for SVG elements */
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes dash {
-            to { stroke-dashoffset: 0; }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .printer-nozzle {
-            animation: pulse 2s ease-in-out infinite;
-            transform-origin: center;
-        }
-
-        .printer-filament {
-            animation: dash 4s linear infinite;
-            stroke-dasharray: 10;
-            stroke-dashoffset: 100;
-        }
-
-        .cutter-blade {
-            animation: rotate 5s linear infinite;
-            transform-origin: center;
-        }
-
-        .circuit-pulse {
-            animation: blink 2s ease-in-out infinite;
-        }
-
-        /* Regular animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadeInUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(30px);
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from { 
-                opacity: 0; 
-                transform: translateY(-30px);
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes scaleIn {
-            from { 
-                opacity: 0; 
-                transform: scale(0.8);
-            }
-            to { 
-                opacity: 1; 
-                transform: scale(1);
-            }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
-        }
-
-        @keyframes colorPulse {
-            from { color: var(--secondary-color); }
-            to { color: var(--light-accent); }
-        }
-
-        @keyframes rotateIn {
-            from { 
-                opacity: 0;
-                transform: rotate(-90deg) scale(0.3);
-            }
-            to { 
-                opacity: 1;
-                transform: rotate(0) scale(1);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero {
-                padding: 50px 20px;
-            }
-            
-            .hero-content {
-                width: 100%;
-                padding: 0;
-                text-align: center;
-            }
-            
-            .hero-text {
-                max-width: 100%;
-            }
-            
-            .service-list {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .section-title {
-                font-size: 28px;
-            }
-            
-            .hero-title {
-                font-size: 32px;
-            }
-        }
-
-                @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .component-pulse {
-            animation: pulse 2s ease-in-out infinite;
-            transform-origin: center;
-        }
-
-        @keyframes trace {
-            0% { stroke-dasharray: 0 300; }
-            100% { stroke-dasharray: 300 0; }
-        }
-
-        .trace-animation {
-            animation: trace 3s linear infinite;
-            stroke-dasharray: 300;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        .led-blink {
-            animation: blink 1s ease-in-out infinite;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
@@ -764,8 +12,7 @@
             <nav>
                 <a href="#" class="logo">Protoplast<span>.3D</span></a>
                 <div class="nav-links">
-                    <a href="#services">Solutions</a>
-                    <a href="#pricing">Pricing</a>
+                    <a href="#services-section">Solutions</a> <a href="#pricing">Pricing</a>
                     <a href="#about">About</a>
                 </div>
             </nav>
@@ -774,26 +21,33 @@
 
     <section class="hero">
         <div class="hero-content">
-            <div class="tag">#flexiblesolutions</div>
+            <div class="animated-logo">
+                <div class="logo-wrapper">
+                  <span class="logo-text">Protoplast</span><span class="logo-dot">.</span><span class="logo-3d">3D</span>
+                </div>
+            </div>
+            
             <h1 class="hero-title">Flexible Solutions for Your Business</h1>
-            <ul class="service-list">
-                <li>3D Printing</li>
-                <li>CNC Cutting</li>
-                <li>CAD Modeling</li>
-                <li>PCB Designing & Manufacturing</li>
-                <li>Rapid Prototyping</li>
-            </ul>
-            <a href="https://wa.me/c/919404570482" class="btn btn-primary">
+
+            <div class="service-buttons">
+                <button class="service-btn" data-service="3d-printing">3D Printing</button>
+                <button class="service-btn" data-service="cnc-cutting">CNC Cutting</button>
+                <button class="service-btn" data-service="cad-modeling">CAD Modeling</button>
+                <button class="service-btn" data-service="pcb-design">PCB Design</button>
+                <button class="service-btn" data-service="rapid-prototyping">Rapid Prototyping</button>
+            </div>
+
+            <a href="https://wa.me/c/919404570482" class="btn btn-primary original-cta">
                 Start free today
             </a>
         </div>
     </section>
 
-    <section id="services" class="services">
+    <section id="services-section" class="services">
         <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <p class="section-subtitle">Your one-stop solution for advanced manufacturing. We provide top-quality services to bring your ideas to life with precision and efficiency.</p>
-            
+            <h2 class="section-title">Our Services Overview</h2>
+            <p class="section-subtitle">Your one-stop solution for advanced manufacturing. We provide top-quality services to bring your ideas to life with precision and efficiency. Click buttons above for details.</p>
+
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
@@ -807,17 +61,13 @@
                     </div>
                     <h3 class="service-title">3D Printing & Prototyping</h3>
                     <p class="service-description">High-precision, rapid prototypes for product development, medical applications, and industrial needs.</p>
-                    <a href="https://wa.me/919404570482?text=I'm%20interested%20in%203D%20Printing%20services" class="whatsapp-btn">
-                        Get a Quote 
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                            <path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4 8.95 8.95 0 0 0 3.1 12.95a8.93 8.93 0 0 0 1.32 4.69L3 22l4.47-1.17a8.95 8.95 0 0 0 13.53-7.88 8.85 8.85 0 0 0-3.4-6.63zm-5.55 13.68a7.45 7.45 0 0 1-3.79-1.04l-.27-.16-2.82.74.75-2.75-.18-.28a7.43 7.43 0 0 1 9.78-10.19 7.36 7.36 0 0 1 2.83 5.52 7.45 7.45 0 0 1-7.46 8.16z"/>
-                            <path d="M9.06 7.76c-.16-.09-.59-.29-.68-.32-.09-.03-.16-.05-.22.05-.07.09-.26.32-.32.39-.06.07-.11.08-.2 0-.1-.08-.43-.17-.82-.54a3 3 0 0 1-.56-.7c-.06-.1 0-.15.04-.2l.14-.16c.05-.06.07-.1.1-.17.03-.07.01-.13-.01-.18-.03-.05-.22-.52-.3-.72-.07-.2-.15-.17-.21-.17h-.18c-.07 0-.17.03-.26.14-.09.11-.34.35-.34.85s.35.98.4 1.05c.04.07.62.95 1.5 1.33.21.09.38.14.5.18.21.07.41.06.56.03.17-.03.52-.21.6-.42.06-.2.06-.38.04-.42-.02-.03-.09-.08-.18-.12z" fill-rule="nonzero"/>
-                        </svg>
-                    </a>
+                    <button class="whatsapp-btn service-btn-card" data-service="3d-printing">
+                       Learn More
+                    </button>
                 </div>
-                <div class="service-card">
+                 <div class="service-card">
                     <div class="service-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="15" y="15" width="70" height="70" rx="2" />
                             <circle cx="30" cy="30" r="5" class="component-pulse" />
                             <circle cx="70" cy="30" r="5" class="component-pulse" />
@@ -831,15 +81,13 @@
                     </div>
                     <h3 class="service-title">PCB Designing & Manufacturing</h3>
                     <p class="service-description">Custom circuit board design, prototyping, and production for electronics projects of all scales.</p>
-                    <a href="https://wa.me/919404570482?text=I'm%20interested%20in%20PCB%20Design%20and%20Manufacturing%20services" class="whatsapp-btn">
-                        Get a Quote 
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                            <path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4 8.95 8.95 0 0 0 3.1 12.95a8.93 8.93 0 0 0 1.32 4.69L3 22l4.47-1.17a8.95 8.95 0 0 0 13.53-7.88 8.85 8.85 0 0 0-3.4-6.63zm-5.55 13.68a7.45 7.45 0 0 1-3.79-1.04l-.27-.16-2.82.74.75-2.75-.18-.28a7.43 7.43 0 0 1 9.78-10.19 7.36 7.36 0 0 1 2.83 5.52 7.45 7.45 0 0 1-7.46 8.16z"/>
-                            <path d="M9.06 7.76c-.16-.09-.59-.29-.68-.32-.09-.03-.16-.05-.22.05-.07.09-.26.32-.32.39-.06.07-.11.08-.2 0-.1-.08-.43-.17-.82-.54a3 3 0 0 1-.56-.7c-.06-.1 0-.15.04-.2l.14-.16c.05-.06.07-.1.1-.17.03-.07.01-.13-.01-.18-.03-.05-.22-.52-.3-.72-.07-.2-.15-.17-.21-.17h-.18c-.07 0-.17.03-.26.14-.09.11-.34.35-.34.85s.35.98.4 1.05c.04.07.62.95 1.5 1.33.21.09.38.14.5.18.21.07.41.06.56.03.17-.03.52-.21.6-.42.06-.2.06-.38.04-.42-.02-.03-.09-.08-.18-.12z" fill-rule="nonzero"/>
-                        </svg>
-                    </a>
+                    <button class="whatsapp-btn service-btn-card" data-service="pcb-design">
+
+
+                       Learn More
+                    </button>
                 </div>
-                <div class="service-card">
+                 <div class="service-card">
                     <div class="service-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="50" cy="50" r="35" fill="none" stroke-width="1" />
@@ -849,12 +97,586 @@
                             <path d="M30 70 L70 30" stroke-width="3" />
                         </svg>
                     </div>
-                    
                     <h3 class="service-title">CNC Cutting & Machining</h3>
                     <p class="service-description">Precision cutting for metals, plastics, and composites for both personal and commercial projects.</p>
-                    <a href="https://wa.me/919404570482?text=I'm%20interested%20in%20CNC%20Cutting%20services" class="whatsapp-btn">
-                        Get a Quote 
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                            <path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4 8.95 8.95 0 0 0 3.1 12.95a8.93 8.93 0 0 0 1.32 4.69L3 22l4.47-1.17a8.95 8.95 0 0 0 13.53-7.88 8.85 8.85 0 0 0-3.4-6.63zm-5.55 13.68a7.45 7.45 0 0 1-3.79-1.04l-.27-.16-2.82.74.75-2.75-.18-.28a7.43 7.43 0 0 1 9.78-10.19 7.36 7.36 0 0 1 2.83 5.52 7.45 7.45 0 0 1-7.46 8.16z"/>
-                            <path d="M9.06 7.76c-.16-.09-.59-.29-.68-.32-.09-.03-.16-.05-.22.05-.07.09-.26.32-.32.39-.06.07-.11.08-.2 0-.1-.08-.43-.17-.82-.54a3 3 0 0 1-.56-.7c-.06-.1 0-.15.04-.2l.14-.16c.05-.06.07-.1.1-.17.03-.07.01-.13-.01-.18-.03-.05-.22-.52-.3-.72-.07-.2-.15-.17-.21-.17h-.18c-.07 0-.17.03-.26.14-.09.11-.34.35-.34.85s.35.98.4 1.05c.04.07.62.95 1.5 1.33.21.09.38.14.5.18.21.07.41.06.56
-                            
+                     <button class="whatsapp-btn service-btn-card" data-service="cnc-cutting">
+                       Learn More
+                    </button>
+                </div>
+                 </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+       <div class="container">
+            <h2 class="section-title">Pricing</h2>
+            <p class="section-subtitle">Transparent pricing models designed to fit your budget and project scope. See details in service descriptions or contact us for custom quotes.</p>
+            <div class="pricing-cards">
+
+                <div class="pricing-card">
+                     <h3 class="pricing-title">FDM 3D Printing</h3>
+                     <p class="pricing-price">Starts from ₹3 / gram</p>
+                     <p class="pricing-description">Based on material (PLA, ABS, PETG) and complexity.</p>
+                     <button class="whatsapp-btn service-btn-card" data-service="3d-printing">Details</button>
+                </div>
+
+                 <div class="pricing-card">
+                     <h3 class="pricing-title">Resin 3D Printing</h3>
+                     <p class="pricing-price">Starts from ₹10 / gram</p>
+                     <p class="pricing-description">High detail SLA/DLP printing.</p>
+                     <button class="whatsapp-btn service-btn-card" data-service="3d-printing">Details</button>
+                </div>
+
+                <div class="pricing-card">
+                     <h3 class="pricing-title">CNC Cutting</h3>
+                     <p class="pricing-price">Starts from ₹15 / cm<sup>3</sup></p>
+                     <p class="pricing-description">Varies by material, thickness, complexity.</p>
+                     <button class="whatsapp-btn service-btn-card" data-service="cnc-cutting">Details</button>
+                </div>
+
+                <div class="pricing-card">
+                     <h3 class="pricing-title">CAD Modeling</h3>
+                     <p class="pricing-price">Starts from ₹500 / design</p>
+                     <p class="pricing-description">Based on project scope and complexity.</p>
+                     <button class="whatsapp-btn service-btn-card" data-service="cad-modeling">Details</button>
+                </div>
+
+                <div class="pricing-card">
+                     <h3 class="pricing-title">PCB Design</h3>
+                     <p class="pricing-price">Starts from ₹500</p>
+                     <p class="pricing-description">Based on complexity, layers, size.</p>
+                     <button class="whatsapp-btn service-btn-card" data-service="pcb-design">Details</button>
+                </div>
+
+                <div class="pricing-card">
+                     <h3 class="pricing-title">PCB Manufacturing</h3>
+                     <p class="pricing-price">Start from ₹500 / PCB</p>
+                     <p class="pricing-description">Based on quantity, size, layers.</p>
+                      <button class="whatsapp-btn service-btn-card" data-service="pcb-design">Details</button>
+                </div>
+
+            </div>
+            
+            <div class="cta-section">
+                <h3>Ready to start your project?</h3>
+                <p>Get in touch for a personalized quote today!</p>
+                <a href="https://wa.me/919404570482" class="whatsapp-btn">
+                    Contact us on WhatsApp
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                       <path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4 8.95 8.95 0 0 0 3.1 12.95a8.93 8.93 0 0 0 1.32 4.69L3 22l4.47-1.17a8.95 8.95 0 0 0 13.53-7.88 8.85 8.85 0 0 0-3.4-6.63zm-5.55 13.68a7.45 7.45 0 0 1-3.79-1.04l-.27-.16-2.82.74.75-2.75-.18-.28a7.43 7.43 0 0 1 9.78-10.19 7.36 7.36 0 0 1 2.83 5.52 7.45 7.45 0 0 1-7.46 8.16z"/>
+                       <path d="M9.06 7.76c-.16-.09-.59-.29-.68-.32-.09-.03-.16-.05-.22.05-.07.09-.26.32-.32.39-.06.07-.11.08-.2 0-.1-.08-.43-.17-.82-.54a3 3 0 0 1-.56-.7c-.06-.1 0-.15.04-.2l.14-.16c.05-.06.07-.1.1-.17.03-.07.01-.13-.01-.18-.03-.05-.22-.52-.3-.72-.07-.2-.15-.17-.21-.17h-.18c-.07 0-.17.03-.26.14-.09.11-.34.35-.34.85s.35.98.4 1.05c.04.07.62.95 1.5 1.33.21.09.38.14.5.18.21.07.41.06.56.03.17-.03.52-.21.6-.42.06-.2.06-.38.04-.42-.02-.03-.09-.08-.18-.12z" fill-rule="nonzero"/>
+                    </svg>
+                </a>
+            </div>
+       </div>
+    </section>
+
+    <section id="about-us" class="about-us">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <p class="section-subtitle">The story behind Protoplast.3D</p>
+            
+            <div class="story-container">
+                <div class="story-content">
+                    <h3 class="story-title fade-in">Our Story – Protoplast.3D</h3>
+                    <p class="story-paragraph fade-in">It all started with a simple question: <span class="highlight">Why should innovation be limited by access to manufacturing?</span></p>
+                    
+                    <p class="story-paragraph fade-in">We saw engineers struggling to bring their ideas to life, startups delaying product launches due to high prototyping costs, and businesses dependent on slow, expensive manufacturing methods. That's when <span class="highlight">Protoplast.3D</span> was born—out of a need to bridge the gap between creativity and production.</p>
+                    
+                    <p class="story-paragraph fade-in">What began as a small initiative has grown into a <span class="highlight">cutting-edge digital manufacturing hub</span>. From <span class="highlight">3D printing to CNC cutting, PCB designing to CAD modeling</span>, we've built a space where <span class="highlight">ideas take shape, products evolve, and businesses scale faster than ever before</span>.</p>
+                    
+                    <p class="story-paragraph fade-in">Today, we work with <span class="highlight">engineers, designers, students, and industry leaders</span>, offering them the tools to create without limits. Whether it's a <span class="highlight">custom prototype, precision part, or electronic circuit board</span>, we ensure every project is handled with <span class="highlight">expertise, speed, and precision</span>.</p>
+                    
+                    <p class="story-paragraph fade-in">At Protoplast.3D, we believe <span class="highlight">the future isn't something you wait for—it's something you create.</span> And we're here to help you build it.</p>
+                </div>
+                
+                <div class="story-visuals">
+                    <div class="visual-container fade-in">
+                        <div class="animated-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="20" y="60" width="60" height="25" rx="2" class="printer-body" />
+                                <rect x="35" y="15" width="30" height="45" rx="2" class="printer-head" />
+                                <line x1="50" y1="35" x2="50" y2="60" class="printer-filament" />
+                                <rect x="40" y="85" width="20" height="5" class="printer-base" />
+                                <circle cx="50" cy="60" r="5" class="printer-nozzle" />
+                            </svg>
+                        </div>
+                        <p class="visual-caption">3D Printing</p>
+                    </div>
+                    
+                    <div class="visual-container fade-in">
+                        <div class="animated-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="50" cy="50" r="35" fill="none" stroke-width="1" class="cutter-base" />
+                                <circle cx="50" cy="50" r="5" class="cutter-center" />
+                                <path d="M50 15 L85 50 L50 85 L15 50 Z" class="cutter-blade" fill="none" />
+                                <path d="M30 30 L70 70" stroke-width="3" class="cutter-cut" />
+                                <path d="M30 70 L70 30" stroke-width="3" class="cutter-cut" />
+                            </svg>
+                        </div>
+                        <p class="visual-caption">CNC Cutting</p>
+                    </div>
+                    
+                    <div class="visual-container fade-in">
+                        <div class="animated-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="15" y="15" width="70" height="70" rx="2" class="pcb-board" />
+                                <circle cx="30" cy="30" r="5" class="component-pulse" />
+                                <circle cx="70" cy="30" r="5" class="component-pulse" />
+                                <circle cx="30" cy="70" r="5" class="component-pulse" />
+                                <circle cx="70" cy="70" r="5" class="component-pulse" />
+                                <path d="M30 30 L70 30 L70 70 L30 70 Z" class="trace-animation" fill="none" />
+                                <circle cx="50" cy="50" r="3" class="led-blink" fill="currentColor" />
+                                <line x1="40" y1="40" x2="60" y2="40" class="circuit-pulse" />
+                                <line x1="40" y1="60" x2="60" y2="60" class="circuit-pulse" />
+                            </svg>
+                        </div>
+                        <p class="visual-caption">PCB Design</p>
+                    </div>
+                    
+                    <div class="visual-container fade-in">
+                        <div class="animated-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 80 L20 20 L80 20 L80 80 Z" class="cad-outline" fill="none" />
+                                <path d="M20 20 L50 10 L80 20" class="cad-top" fill="none" />
+                                <path d="M80 20 L90 50 L80 80" class="cad-right" fill="none" />
+                                <path d="M50 10 L90 50" class="cad-diagonal" fill="none" />
+                                <circle cx="50" cy="50" r="15" class="cad-circle" fill="none" />
+                                <line x1="35" y1="50" x2="65" y2="50" class="cad-dimension" />
+                                <line x1="50" y1="35" x2="50" y2="65" class="cad-dimension" />
+                            </svg>
+                        </div>
+                        <p class="visual-caption">CAD Modeling</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="about">
+         
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">Protoplast<span>.3D</span></div>
+                    <p class="footer-description">Bringing your ideas to life with advanced manufacturing solutions.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#services-section">Solutions</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#about">About Us</a></li>
+                    </ul>
+                </div>
+                 <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                         <li><a href="mailto:info@protoplast3d.com">info@protoplast3d.com</a></li>
+                         <li><a href="tel:+919404570482">+91 94045 70482</a></li>
+                         <li><a href="https://wa.me/919404570482">WhatsApp</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <!-- Twitter/X -->
+                        <a href="https://x.com/Protoplast_3D?t=DUonkFrHINhUm_Zd2y1dWQ&s=09" target="_blank" class="social-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/protoplast.3d/profilecard/?igsh=MXIzdm9oOHA3Y2kzdA==" target="_blank" class="social-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/company/protoplast-3d/" target="_blank" class="social-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                        
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/share/18qwqAHSCb/" target="_blank" class="social-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Protoplast.3D. All Rights Reserved. </div>
+        </div>
+    </footer>
+
+    <div id="service-overlay" class="overlay">
+        <div class="popup-content">
+            <button class="close-popup">&times;</button>
+
+            <div id="3d-printing-details" class="service-details">
+                <h2>3D Printing</h2>
+                <p>At Protoplast.3D, we specialize in high-precision 3D printing services, offering FDM and SLA printing technologies to cater to a wide range of industries. Whether you need functional prototypes, custom components, architectural models, or production-grade parts, our advanced printing techniques ensure exceptional quality and accuracy.</p>
+                <h3>Materials Available:</h3>
+                <ul>
+                    <li><b>PLA, ABS, PETG</b> – Ideal for strong, lightweight, and functional parts.</li>
+                    <li><b>Resin Printing (SLA/DLP)</b> – Perfect for highly detailed, smooth-finish components.</li>
+                </ul>
+                <h3>Applications:</h3>
+                <ul>
+                    <li>Product Prototyping – Validate designs before mass production.</li>
+                    <li>Automotive & Aerospace – Lightweight and strong components for specialized applications.</li>
+                    <li>Medical & Healthcare – Custom prosthetics, surgical guides, and medical models.</li>
+                    <li>Consumer Goods – Customized accessories, tools, and home decor.</li>
+                </ul>
+            </div>
+
+            <div id="cnc-cutting-details" class="service-details">
+                <h2>CNC Cutting & Machining</h2>
+                <p>Our CNC cutting and machining services provide high-precision fabrication for various materials, including metals, plastics, acrylics, and wood. Using advanced CNC machines, we guarantee clean cuts, fine detailing, and excellent repeatability, making it ideal for custom components, signage, and industrial applications.</p>
+                <h3>Capabilities:</h3>
+                <ul>
+                    <li><b>2D & 3D CNC Machining</b> – For custom industrial and mechanical parts.</li>
+                    <li><b>Laser Cutting & Engraving</b> – For detailed markings and precision cutting.</li>
+                    <li><b>Milling & Routing</b> – High-accuracy shaping for metal, wood, and acrylic components.</li>
+                </ul>
+                <h3>Applications:</h3>
+                <ul>
+                    <li>Industrial & Mechanical Parts – Customized and batch-manufactured machine parts.</li>
+                    <li>Architectural & Interior Designs – CNC-cut panels, engravings, and decorative elements.</li>
+                    <li>Signage & Branding – Custom-designed acrylic and metal signboards.</li>
+                </ul>
+             </div>
+
+             <div id="cad-modeling-details" class="service-details">
+                <h2>CAD Modeling</h2>
+                <p>At Protoplast.3D, we provide professional 3D CAD modeling services that help businesses visualize, refine, and optimize their designs before manufacturing. Our expert designers create highly detailed and production-ready 3D models for engineering, product design, and architectural projects.</p>
+                <h3>Services We Offer:</h3>
+                <ul>
+                    <li><b>3D Product Design & Prototyping</b> – Converting concepts into manufacturable designs.</li>
+                    <li><b>Mechanical CAD Modeling</b> – Precision-driven designs for industrial applications.</li>
+                    <li><b>Architectural CAD Services</b> – 3D modeling for buildings, interiors, and landscapes.</li>
+                </ul>
+                 <h3>Industries Served:</h3>
+                 <ul>
+                    <li>Manufacturing & Engineering – Custom-designed components and machinery parts.</li>
+                    <li>Consumer Electronics & Appliances – 3D models optimized for production.</li>
+                    <li>Architecture & Construction – Visualization and rendering for real estate projects.</li>
+                 </ul>
+            </div>
+
+            <div id="pcb-design-details" class="service-details">
+                 <h2>PCB Designing & Manufacturing</h2>
+                 <p>We provide custom PCB design and manufacturing services, ensuring high-quality and optimized circuit board solutions for industries such as electronics, robotics, IoT, and automation. Our team specializes in designing single-layer, multi-layer, and flexible PCBs for various applications.</p>
+                 <h3>Services Offered:</h3>
+                 <ul>
+                    <li><b>Schematic Design & Circuit Layout</b> – Optimized PCB designs for performance and manufacturability.</li>
+                    <li><b>Prototype & Batch Production</b> – Small-run and large-scale PCB manufacturing.</li>
+                    <li><b>Component Sourcing & Assembly</b> – High-quality components for durable and reliable circuits.</li>
+                 </ul>
+                 <h3>Industries Served:</h3>
+                 <ul>
+                    <li>Embedded Systems & IoT Devices – Custom PCB designs for smart electronics.</li>
+                    <li>Industrial Automation – High-performance circuit boards for automation systems.</li>
+                    <li>Medical & Automotive Electronics – Precision-engineered PCBs for specialized applications.</li>
+                 </ul>
+            </div>
+
+            <div id="rapid-prototyping-details" class="service-details">
+                 <h2>Rapid Prototyping</h2>
+                 <p>Innovation requires fast iteration and testing, and our rapid prototyping services enable businesses to bring their ideas to life quickly and efficiently. Using a combination of 3D printing, CNC machining, and PCB fabrication, we provide prototypes that allow for real-world testing before mass production.</p>
+                 <h3>Why Choose Our Rapid Prototyping Services?</h3>
+                 <ul>
+                     <li>✔ Accelerate Product Development – Reduce time-to-market with quick iterations.</li>
+                     <li>✔ Cost-Effective – Test and refine designs without high production costs.</li>
+                     <li>✔ Multiple Manufacturing Methods – Choose from 3D printing, CNC, or PCB prototyping.</li>
+                 </ul>
+             </div>
+
+
+            <!-- Add this block after your last service details div in the overlay popup -->
+
+            <div id="fdm-3d-printing-details" class="pricing-details">
+                <h2>FDM 3D Printing Pricing</h2>
+                <p>Our FDM 3D printing services offer high-quality, cost-effective solutions for a wide range of applications.</p>
+                
+                <div class="pricing-table">
+                    <h3>Material Pricing (Per Gram)</h3>
+                    <table>
+                        <tr>
+                            <th>Material</th>
+                            <th>Price Range</th>
+                            <th>Best For</th>
+                        </tr>
+                        <tr>
+                            <td>PLA</td>
+                            <td>₹3 - ₹5</td>
+                            <td>Prototypes, decorative items, educational models</td>
+                        </tr>
+                        <tr>
+                            <td>ABS</td>
+                            <td>₹4 - ₹6</td>
+                            <td>Functional parts, automotive components, durable goods</td>
+                        </tr>
+                        <tr>
+                            <td>PETG</td>
+                            <td>₹4 - ₹7</td>
+                            <td>Food-safe applications, mechanical parts, clear components</td>
+                        </tr>
+                        <tr>
+                            <td>TPU (Flexible)</td>
+                            <td>₹5 - ₹8</td>
+                            <td>Flexible parts, phone cases, seals, grips</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <h3>Additional Factors Affecting Price:</h3>
+                <ul>
+                    <li><b>Infill Density:</b> Higher infill increases material usage and strength.</li>
+                    <li><b>Print Quality:</b> Higher resolution requires more time and precision.</li>
+                    <li><b>Support Material:</b> Complex geometries requiring supports add to material cost.</li>
+                    <li><b>Quantity:</b> Bulk orders receive discounted rates.</li>
+                </ul>
+                
+            </div>
+
+            <div id="resin-3d-printing-details" class="pricing-details">
+                <h2>Resin 3D Printing Pricing</h2>
+                <p>Our SLA/DLP resin printing delivers exceptional detail and surface finish for high-precision applications.</p>
+                
+                <div class="pricing-table">
+                    <h3>Resin Types (Per Gram)</h3>
+                    <table>
+                        <tr>
+                            <th>Resin Type</th>
+                            <th>Price Range</th>
+                            <th>Best For</th>
+                        </tr>
+                        <tr>
+                            <td>Standard Resin</td>
+                            <td>₹10 - ₹15</td>
+                            <td>Detailed models, figurines, jewelry prototypes</td>
+                        </tr>
+                        <tr>
+                            <td>Tough Resin</td>
+                            <td>₹15 - ₹20</td>
+                            <td>Functional parts, snap-fit components</td>
+                        </tr>
+                        <tr>
+                            <td>Dental/Medical</td>
+                            <td>₹18 - ₹25</td>
+                            <td>Medical models, dental applications</td>
+                        </tr>
+                        <tr>
+                            <td>Castable Resin</td>
+                            <td>₹20 - ₹30</td>
+                            <td>Jewelry casting, precise metal replacement</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <h3>Finishing Options:</h3>
+                <ul>
+                    <li><b>Standard Clean:</b> Included in base price</li>
+                    <li><b>Sanding & Smoothing:</b> +₹150 per part</li>
+                    <li><b>Primer Application:</b> +₹200 per part</li>
+                    <li><b>Painting:</b> From ₹300 based on complexity</li>
+                </ul>
+                
+            </div>
+
+            <div id="cnc-cutting-details-pricing" class="pricing-details">
+                <h2>CNC Cutting Pricing</h2>
+                <p>Our precision CNC cutting services deliver high-quality results for various materials and applications.</p>
+                
+                <div class="pricing-table">
+                    <h3>Material Pricing (Per cm³)</h3>
+                    <table>
+                        <tr>
+                            <th>Material</th>
+                            <th>Price Range</th>
+                            <th>Thickness Range</th>
+                        </tr>
+                        <tr>
+                            <td>Acrylic</td>
+                            <td>₹15 - ₹25</td>
+                            <td>1mm - 20mm</td>
+                        </tr>
+                        <tr>
+                            <td>Wood</td>
+                            <td>₹12 - ₹20</td>
+                            <td>3mm - 25mm</td>
+                        </tr>
+                        <tr>
+                            <td>Aluminum</td>
+                            <td>₹30 - ₹50</td>
+                            <td>0.5mm - 12mm</td>
+                        </tr>
+                        <tr>
+                            <td>Steel</td>
+                            <td>₹40 - ₹70</td>
+                            <td>0.5mm - 10mm</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <h3>Additional Services:</h3>
+                <ul>
+                    <li><b>Custom Engraving:</b> ₹8 - ₹15 per cm²</li>
+                    <li><b>Design Assistance:</b> ₹500 - ₹2,000 based on complexity</li>
+                    <li><b>Edge Finishing:</b> ₹5 - ₹10 per linear cm</li>
+                    <li><b>Rush Orders:</b> +30% for 24-hour turnaround</li>
+                </ul>
+                
+            </div>
+
+            <div id="cad-modeling-details-pricing" class="pricing-details">
+                <h2>CAD Modeling Pricing</h2>
+                <p>Our professional CAD modeling services transform your concepts into precise, production-ready 3D models.</p>
+                
+                <div class="pricing-table">
+                    <h3>Service Tiers</h3>
+                    <table>
+                        <tr>
+                            <th>Service Level</th>
+                            <th>Price Range</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>Basic Design</td>
+                            <td>₹500 - ₹1,500</td>
+                            <td>Simple objects, basic modifications, single-part designs</td>
+                        </tr>
+                        <tr>
+                            <td>Standard Design</td>
+                            <td>₹1,500 - ₹3,000</td>
+                            <td>Multi-part assemblies, moderate complexity, engineering drawings</td>
+                        </tr>
+                        <tr>
+                            <td>Complex Design</td>
+                            <td>₹3,000 - ₹5,000</td>
+                            <td>Advanced assemblies, complex surfaces, full documentation</td>
+                        </tr>
+                        <tr>
+                            <td>Expert Design</td>
+                            <td>₹5,000+</td>
+                            <td>Highly specialized designs, simulation-ready models, production specifications</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <h3>Additional Services:</h3>
+                <ul>
+                    <li><b>2D Drawings:</b> ₹300 - ₹800 per drawing</li>
+                    <li><b>Photo-realistic Rendering:</b> ₹800 - ₹2,000 per view</li>
+                    <li><b>Design Revisions:</b> First two revisions free, then ₹300 per revision</li>
+                    <li><b>Design Consultation:</b> ₹500 per hour</li>
+                </ul>
+                
+                <p><b>Turnaround Time:</b> 2-7 days for standard projects, expedited service available.</p>
+            </div>
+
+            <div id="pcb-design-details-pricing" class="pricing-details">
+                <h2>PCB Design Pricing</h2>
+                <p>Our PCB design services provide professional circuit layouts optimized for manufacturability and performance.</p>
+                
+                <div class="pricing-table">
+                    <h3>Design Services</h3>
+                    <table>
+                        <tr>
+                            <th>Service</th>
+                            <th>Price Range</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>Schematic Design</td>
+                            <td>₹500 - ₹2,000</td>
+                            <td>Circuit design, component selection, documentation</td>
+                        </tr>
+                        <tr>
+                            <td>PCB Layout</td>
+                            <td>₹1,000 - ₹5,000</td>
+                            <td>Based on board size, layer count, and component density</td>
+                        </tr>
+                        <tr>
+                            <td>Full Design Package</td>
+                            <td>₹1,500 - ₹7,000</td>
+                            <td>Schematic + Layout + Production files + BOM</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <h3>Complexity Factors:</h3>
+                <ul>
+                    <li><b>Single Layer:</b> Base price</li>
+                    <li><b>Double Layer:</b> +30% to base price</li>
+                    <li><b>4+ Layers:</b> +75% to base price</li>
+                    <li><b>High-Speed Design:</b> +50% for controlled impedance, signal integrity analysis</li>
+                    <li><b>RF/Microwave:</b> +100% for specialized RF design considerations</li>
+                </ul>
+                
+                <p><b>Design Revisions:</b> First revision free, additional revisions at 25% of original cost.</p>
+            </div>
+
+            <div id="pcb-manufacturing-details-pricing" class="pricing-details">
+                <h2>PCB Manufacturing Pricing</h2>
+                <p>Our PCB manufacturing services deliver high-quality circuit boards with reliable performance for all applications.</p>
+                
+                <div class="pricing-table">
+                    <h3>Manufacturing Services (Per PCB)</h3>
+                    <table>
+                        <tr>
+                            <th>Type</th>
+                            <th>Price Range</th>
+                            <th>Minimum Order</th>
+                        </tr>
+                        <tr>
+                            <td>Prototype (Single/Double Layer)</td>
+                            <td>₹500 - ₹1,500</td>
+                            <td>3 pieces</td>
+                        </tr>
+                        <tr>
+                            <td>Small Batch (Single/Double Layer)</td>
+                            <td>₹300 - ₹800</td>
+                            <td>10 pieces</td>
+                        </tr>
+                        <tr>
+                            <td>Medium Batch (Single/Double Layer)</td>
+                            <td>₹200 - ₹500</td>
+                            <td>50 pieces</td>
+                        </tr>
+                        <tr>
+                            <td>Multilayer (4+ layers)</td>
+                            <td>₹800 - ₹3,000</td>
+                            <td>5 pieces</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <h3>Additional Services:</h3>
+                <ul>
+                    <li><b>Component Sourcing:</b> Cost + 15% handling fee</li>
+                    <li><b>SMT Assembly:</b> ₹5 - ₹15 per component placement</li>
+                    <li><b>Through-Hole Assembly:</b> ₹8 - ₹20 per component</li>
+                    <li><b>Testing & Validation:</b> ₹300 - ₹1,000 per board type</li>
+                    <li><b>Conformal Coating:</b> ₹150 - ₹500 per board</li>
+                </ul>
+                
+                <p><b>Turnaround Time:</b> Standard 7-10 days, Express service available (3-5 days) at 50% premium.</p>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+
+</body>
+</html>
