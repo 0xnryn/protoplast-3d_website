@@ -2972,3 +2972,43 @@ header .logo img {
     width: auto; /* Maintain aspect ratio */
     vertical-align: left; /* Helps align the image with other nav items if they are text */
 }
+
+
+/* Styles for the logo image in the footer */
+
+.footer-logo .logo {
+    /*
+     * Remove or reduce padding and margin on the link within the footer logo container.
+     * This prevents extra space around the clickable area.
+     */
+    padding: 0;
+    margin: 0;
+    /* You might want to set display based on your footer layout (e.g., block if it's in its own column) */
+    display: inline-block;
+}
+
+.footer-logo .logo img {
+    /*
+     * Style the image itself to control its size.
+     * Use max-width and height: auto for responsiveness.
+     */
+    display: block; /* Helps with sizing and margin */
+    max-width: 120px; /* **Adjust this value** to control the image size in the footer */
+    height: auto; /* Maintain aspect ratio */
+
+    /* Remove any default or inherited padding and margin from the image */
+    padding: 0;
+    margin: 0;
+
+    /* Optional: Add some space below the logo if it's the first item in a footer column */
+    /* margin-bottom: 15px; */
+}
+
+/*
+ * If the .footer-logo div itself needs spacing below it,
+ * you would add margin-bottom to .footer-logo
+ * Example:
+.footer-logo {
+    margin-bottom: 20px;
+}
+*/
