@@ -1,18 +1,90 @@
 :root {
-    --primary-color: #130e2e;
-    --secondary-color: #8273ff;
-    --accent-color: #5a42ff;
-    --light-accent: #aaa1ff;
-    --text-color: #ffffff;
-    --dark-text: #333333;
+    /* Core Theme Colors (New Green Gradient Palette) */
+    --primary-color: #0A180A;         /* Main background, very deep dark forest green */
+    --secondary-color-base: #387C3F;  /* Base for secondary accent (natural, vibrant forest green) */
+    --secondary-color: rgba(56, 124, 63, 0.75); /* Main accent with transparency (from base) */
+    --accent-color: #2C6F33;          /* Richer, slightly darker green accent */
+    --light-accent: #8BC34A;         /* Lighter, brighter lime-green accent */
+    --text-color: #ffffff;           /* Main text on dark backgrounds (Pure white) */
+    --dark-text: #333333;            /* Main text on light backgrounds (standard dark grey) */
+    --black-color: var(--primary-color); /* Use primary color for consistent dark base */
+    --white-color: #ffffff;          /* Pure white */
+
+    /* Specific Named Colors (Adjusted to fit new green gradient) */
+    --logo-highlight-green1: #66BB6A; /* Bright grassy green highlight */
+    --logo-highlight-green2: #81C784; /* Lighter vibrant green highlight */
+    --whatsapp-green: #25D366;       /* Keep standard WhatsApp green (fits well with greens) */
+    --pricing-text-highlight: #D4E157; /* Vibrant yellow-green highlight (part of the gradient) */
+    --hero-gradient-end-green: #050F05; /* Even darker shade of primary for gradients */
+    --popup-content-bg-green: #142A14; /* Dark, slightly varied green for specific backgrounds */
+    --visual-container-bg-green: #030A03; /* Extremely dark green background */
+    --service-details-h4-green: #C5E1A5; /* Very light, pale green for headings */
+
+    /* UI Element Backgrounds & Overlays (Using rgba with new core green colors) */
+    --bg-overlay-light-003: rgba(255, 255, 255, 0.03); /* Standard white overlay */
+    --bg-overlay-light-005: rgba(255, 255, 255, 0.05);
+    --bg-overlay-light-008: rgba(255, 255, 255, 0.08); /* For service-btn */
+    --bg-overlay-light-010: rgba(255, 255, 255, 0.1);
+    --bg-overlay-dark-020: rgba(10, 24, 10, 0.2); /* Using new primary color */
+    --bg-overlay-dark-green-085: rgba(20, 40, 20, 0.85); /* Dark green overlay */
+
+    /* Pricing Table Specific Greens (Using shades from the new green gradient) */
+    --pricing-details-bg-green: #1E331E;       /* Dark green pricing detail background */
+    --pricing-table-header-bg-green: #284028;    /* Header background (Slightly lighter dark green) */
+    --pricing-table-border-green: #4A6A4A;     /* Mid-tone green border */
+    --pricing-table-row-odd-bg-green: #223822;   /* Another dark green row background */
+    --pricing-table-row-even-bg-green: #263C26;  /* Another dark green row background (ensure sufficient contrast) */
+    --additional-factors-border-green: #406040; /* Another mid-tone green border */
+
+    /* Scrollbar Colors (Using new green gradient colors) */
+    --scrollbar-track-bg-dark-green: #1A2A1A;   /* Dark green scrollbar track */
+    --scrollbar-thumb-bg-green: var(--secondary-color-base); /* Use main secondary green */
+    --scrollbar-thumb-hover-bg-green: var(--light-accent);  /* Use light lime-green for hover */
+    --scrollbar-ff-colors: var(--scrollbar-thumb-bg-green) var(--scrollbar-track-bg-dark-green);
+
+    /* Shadows (Using rgba with dark/accent colors) */
+    --shadow-dark-alpha02: rgba(0, 0, 0, 0.2); /* Standard black shadow */
+    --shadow-dark-alpha03: rgba(0, 0, 0, 0.3);
+    --shadow-dark-alpha04: rgba(0, 0, 0, 0.4);
+
+    --shadow-accent-green-glow1: rgba(44, 111, 51, 0.5); /* Glow from new accent green */
+    --shadow-accent-green-glow2: rgba(44, 111, 51, 0.3);
+    --shadow-accent-green-glow3: rgba(44, 111, 51, 0.2);
+    --shadow-accent-green-glow4: rgba(44, 111, 51, 0.1);
+    --shadow-whatsapp-green-glow: rgba(37, 211, 102, 0.3); /* Keep specific whatsapp glow */
+
+    /* Borders (Keeping standard white borders or using subtle new tones) */
+    --border-light-alpha01: rgba(255, 255, 255, 0.1); /* Copyright border (subtle white) */
+    --border-light-alpha02: rgba(255, 255, 255, 0.2); /* e.g., service-btn border (subtle white) */
+
+    /* Section Padding (Keep as is) */
     --section-padding: 80px 0;
 }
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: var(--scrollbar-ff-colors); /* For Firefox */
+}
+
+/* Custom scrollbar for webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-bg-dark-green);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-bg-green);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover-bg-green);
 }
 
 body {
@@ -34,7 +106,7 @@ header {
     top: 0;
     background-color: var(--primary-color);
     z-index: 100;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 10px var(--shadow-dark-alpha03);
 }
 
 nav {
@@ -43,7 +115,7 @@ nav {
     align-items: center;
 }
 
-.logo {
+.logo { /* Original .logo, consider if it conflicts with .animated-logo usage */
     font-size: 28px;
     font-weight: 700;
     color: var(--text-color);
@@ -72,7 +144,7 @@ nav {
 }
 
 .nav-links a:hover {
-    color: var(--secondary-color);
+    color: var(--secondary-color-base); /* Use opaque version for text hover */
     transform: translateY(-3px);
 }
 
@@ -83,7 +155,7 @@ nav {
     height: 2px;
     bottom: -5px;
     left: 0;
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color-base);
     transition: width 0.3s;
 }
 
@@ -108,10 +180,10 @@ nav {
 }
 
 .btn-primary:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color-base);
     color: var(--text-color);
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(90, 66, 255, 0.3);
+    box-shadow: 0 10px 20px var(--shadow-accent-green-glow1);
 }
 
 .btn-secondary {
@@ -121,10 +193,10 @@ nav {
 }
 
 .btn-secondary:hover {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
+    background-color: var(--secondary-color-base);
+    border-color: var(--secondary-color-base);
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(90, 66, 255, 0.3);
+    box-shadow: 0 10px 20px var(--shadow-accent-green-glow2);
 }
 
 .btn-arrow {
@@ -157,7 +229,7 @@ nav {
     position: relative;
     overflow: hidden;
     min-height: 500px;
-    background: linear-gradient(135deg, var(--primary-color), #1f1846);
+    background: linear-gradient(135deg, var(--primary-color), var(--hero-gradient-end-green));
     border-radius: 20px;
     margin: 20px auto;
     max-width: 1240px;
@@ -173,7 +245,7 @@ nav {
 
 .tag {
     background-color: var(--light-accent);
-    color: var(--primary-color);
+    color: var(--primary-color); /* This was white text on light-accent. Switched to primary for contrast. Verify design. */
     padding: 6px 16px;
     border-radius: 50px;
     font-size: 14px;
@@ -183,14 +255,22 @@ nav {
     animation: scaleIn 0.5s ease-out, float 4s ease-in-out infinite;
 }
 
-.hero-title {
+.hero-title { /* This is the original .hero-title */
     font-size: 42px;
     margin-bottom: 20px;
     line-height: 1.2;
     animation: fadeInUp 1s ease-out 0.3s backwards;
 }
 
-.hero-text {
+/* Styles for .hero-title if used with animated-logo below */
+.hero-title.animated { /* Add .animated class if you want this specific animation */
+    animation: fadeInTitle 1.2s ease-out forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+}
+
+
+.hero-text { /* This class was referenced in media queries but not defined with content, keeping selector if used elsewhere */
     margin-bottom: 30px;
     font-size: 18px;
     max-width: 800px;
@@ -199,43 +279,41 @@ nav {
     animation: fadeInUp 1s ease-out 0.5s backwards;
 }
 
-.service-list {
-    list-style: none;
-    margin-bottom: 30px;
+/* Hero Section Button Container (replaces .service-list) */
+.service-buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
+    margin-bottom: 30px;
     animation: fadeInUp 1s ease-out 0.7s backwards;
 }
 
-.service-list li {
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 10px 20px;
-    border-radius: 30px;
-    transition: transform 0.3s, background-color 0.3s;
-}
-
-.service-list li:hover {
-    transform: translateY(-5px);
-    background-color: var(--secondary-color);
-    cursor: pointer;
-}
-
-.service-list li:before {
-    content: "•";
-    color: var(--secondary-color);
-    font-weight: bold;
-    display: inline-block;
-    width: 1em;
-    margin-right: 10px;
-}
-
-.service-list li:hover:before {
+/* Individual Service Buttons in Hero */
+.service-btn {
+    background-color: var(--bg-overlay-light-008);
     color: var(--text-color);
+    border: 1px solid var(--border-light-alpha02);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+.service-btn:hover {
+    background-color: var(--secondary-color-base);
+    border-color: var(--secondary-color-base);
+    color: var(--primary-color); /* Text color change on hover for better contrast */
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px var(--shadow-accent-green-glow3);
+}
+
+.original-cta { /* Ensure this is still relevant or merge with .service-buttons */
+   animation: fadeInUp 1s ease-out 0.9s backwards;
 }
 
 /* Services Section */
@@ -256,16 +334,11 @@ nav {
     position: absolute;
     width: 80px;
     height: 3px;
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color-base);
     bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
     animation: widthGrow 1s ease-out forwards;
-}
-
-@keyframes widthGrow {
-    from { width: 0; }
-    to { width: 80px; }
 }
 
 .section-subtitle {
@@ -284,7 +357,7 @@ nav {
 }
 
 .service-card {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--bg-overlay-light-005);
     border-radius: 15px;
     padding: 30px;
     transition: transform 0.5s, box-shadow 0.5s, background-color 0.5s;
@@ -300,20 +373,14 @@ nav {
 
 .service-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 30px var(--shadow-dark-alpha02);
+    background-color: var(--bg-overlay-light-010);
 }
 
 .service-icon {
     margin-bottom: 20px;
-    color: var(--secondary-color);
+    color: var(--secondary-color-base);
     transition: transform 0.3s, color 0.3s;
-}
-
-@keyframes gentleShake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-3px); }
-    75% { transform: translateX(3px); }
 }
 
 .service-card:hover .service-icon {
@@ -341,10 +408,31 @@ nav {
     font-size: 16px;
 }
 
+/* Style for buttons within service cards to trigger popup */
+.service-btn-card {
+    background-color: transparent;
+    border: 1px solid var(--secondary-color-base);
+    color: var(--secondary-color-base);
+    padding: 8px 16px;
+    margin-top: 15px;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.service-btn-card:hover {
+    background-color: var(--secondary-color-base);
+    color: var(--primary-color); /* Text color change */
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px var(--shadow-accent-green-glow4);
+}
+
 /* Materials Section */
 .materials {
     padding: var(--section-padding);
-    background-color: rgba(255, 255, 255, 0.03);
+    background-color: var(--bg-overlay-light-003);
     border-radius: 20px;
     margin: 20px auto;
     max-width: 1240px;
@@ -358,7 +446,7 @@ nav {
 }
 
 .material-item {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--bg-overlay-light-005);
     border-radius: 10px;
     padding: 15px;
     text-align: center;
@@ -384,8 +472,8 @@ nav {
 
 .material-item:hover {
     transform: translateY(-5px) scale(1.05);
-    background-color: var(--secondary-color);
-    color: white;
+    background-color: var(--secondary-color-base);
+    color: var(--white-color); /* Or var(--primary-color) if secondary-color-base is light */
 }
 
 /* Pricing Section */
@@ -401,7 +489,7 @@ nav {
 }
 
 .pricing-card {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--bg-overlay-light-005);
     border-radius: 15px;
     padding: 30px;
     transition: transform 0.5s, background-color 0.5s, box-shadow 0.5s;
@@ -411,14 +499,14 @@ nav {
     overflow: hidden;
 }
 
-.pricing-card::before {
+.pricing-card::before { /* This creates a radial gradient glow */
     content: '';
     position: absolute;
     top: -50%;
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(130, 115, 255, 0.2) 0%, rgba(130, 115, 255, 0) 70%);
+    background: radial-gradient(circle, rgba(143, 255, 115, 0.2) 0%, rgba(138, 255, 115, 0) 70%); /* Consider variables for these greens if themeable */
     opacity: 0;
     transition: opacity 0.5s;
     pointer-events: none;
@@ -435,14 +523,15 @@ nav {
 
 .pricing-card:hover {
     transform: translateY(-10px);
-    background-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    background-color: var(--bg-overlay-light-010);
+    box-shadow: 0 15px 30px var(--shadow-dark-alpha02);
 }
 
-.pricing-title {
+/* Pricing title inside card - distinct from .section-title */
+.pricing-card .pricing-title {
     font-size: 24px;
     margin-bottom: 15px;
-    color: var(--secondary-color);
+    color: var(--secondary-color-base);
     transition: color 0.3s;
 }
 
@@ -471,8 +560,8 @@ nav {
 }
 
 .whatsapp-btn {
-    background-color: #25D366;
-    color: white;
+    background-color: var(--whatsapp-green);
+    color: var(--white-color);
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -486,13 +575,13 @@ nav {
 
 .whatsapp-btn:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+    box-shadow: 0 10px 20px var(--shadow-whatsapp-green-glow);
 }
 
 /* Footer */
 footer {
     padding: 50px 0;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--bg-overlay-dark-020);
     margin-top: 80px;
 }
 
@@ -503,7 +592,7 @@ footer {
     animation: fadeInUp 1s ease-out;
 }
 
-.footer-logo {
+.footer-logo { /* Assuming this is similar to header .logo */
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 20px;
@@ -511,7 +600,7 @@ footer {
 }
 
 .footer-logo span {
-    color: var(--secondary-color);
+    color: var(--secondary-color-base);
     animation: colorPulse 4s infinite alternate;
 }
 
@@ -530,10 +619,10 @@ footer {
     position: absolute;
     width: 40px;
     height: 2px;
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color-base);
     bottom: -10px;
     left: 0;
-    animation: widthGrow 1s ease-out forwards; /* Re-used animation */
+    animation: widthGrow 1s ease-out forwards;
 }
 
 .footer-links ul {
@@ -563,7 +652,7 @@ footer {
     height: 1px;
     bottom: -2px;
     left: 0;
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color-base);
     transition: width 0.3s;
 }
 
@@ -572,314 +661,125 @@ footer {
 }
 
 .footer-links a:hover {
-    color: var(--secondary-color);
+    color: var(--secondary-color-base);
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-overlay-light-010);
+    color: var(--white-color);
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: var(--secondary-color-base); /* Changed from primary-color for better visibility */
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.social-icon svg {
+    width: 20px;
+    height: 20px;
 }
 
 .copyright {
     text-align: center;
     margin-top: 50px;
     padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--border-light-alpha01);
     animation: fadeIn 1s ease-out;
 }
 
-/* Animation for SVG elements */
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-@keyframes dash {
-    to { stroke-dashoffset: 0; }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1); opacity: 0.7; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-}
-
-.printer-nozzle {
-    animation: pulse 2s ease-in-out infinite;
-    transform-origin: center;
-}
-
-.printer-filament {
-    animation: dash 4s linear infinite;
-    stroke-dasharray: 10;
-    stroke-dashoffset: 100;
-}
-
-.cutter-blade {
-    animation: rotate 5s linear infinite;
-    transform-origin: center;
-}
-
-.circuit-pulse {
-    animation: blink 2s ease-in-out infinite; /* Assuming blink is desired */
-}
-
-.component-pulse {
-    animation: pulse 2s ease-in-out infinite;
-    transform-origin: center;
-}
-
-@keyframes trace {
-    0% { stroke-dasharray: 0 300; }
-    100% { stroke-dasharray: 300 0; }
-}
-
-.trace-animation {
-    animation: trace 3s linear infinite;
-    stroke-dasharray: 300; /* Define initial state */
-    stroke-width: 1; /* Give it a visible stroke */
-}
-
-.led-blink {
-    animation: blink 1s ease-in-out infinite;
-}
-
-
-/* Regular animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes scaleIn {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
-}
-
-@keyframes colorPulse {
-    from { color: var(--secondary-color); }
-    to { color: var(--light-accent); }
-}
-
-@keyframes rotateIn {
-    from {
-        opacity: 0;
-        transform: rotate(-90deg) scale(0.3);
-    }
-    to {
-        opacity: 1;
-        transform: rotate(0) scale(1);
-    }
-}
-
-/* Responsive Design */
-@media (max-width: 992px) {
-    .hero {
-        padding: 50px 20px;
-    }
-
-    .hero-content {
-        width: 100%;
-        padding: 0;
-        text-align: center;
-    }
-
-    .hero-text {
-        max-width: 100%;
-    }
-
-    .service-list {
-        justify-content: center;
-    }
-
-     .footer-content {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust for smaller screens */
-    }
-}
-
-@media (max-width: 768px) {
-    .nav-links {
-        display: none; /* Hide nav links on smaller screens */
-    }
-
-    .section-title {
-        font-size: 28px;
-    }
-
-    .hero-title {
-        font-size: 32px;
-    }
-
-    .services-grid, .pricing-cards {
-        grid-template-columns: 1fr; /* Stack cards vertically */
-    }
-
-     .footer-content {
-        grid-template-columns: 1fr; /* Stack footer sections vertically */
-        text-align: center;
-    }
-
-    .footer-links h4::after {
-        left: 50%; /* Center the underline */
-        transform: translateX(-50%);
-    }
-}
-/* --- Keep all your existing CSS rules above this line --- */
-
-/* --- Add/Modify the following CSS rules --- */
-
-/* Remove Hero Service List Styling (if any remain) */
-.service-list {
-    display: none; /* Hide the old list */
-}
-
-/* Hero Section Button Container */
-.service-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px; /* Spacing between buttons */
-    margin-bottom: 30px; /* Space below buttons */
-    animation: fadeInUp 1s ease-out 0.7s backwards; /* Reuse animation */
-}
-
-/* Individual Service Buttons in Hero */
-.service-btn {
-    background-color: rgba(255, 255, 255, 0.08);
-    color: var(--text-color);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 10px 20px;
-    border-radius: 50px;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    text-align: center;
-}
-
-.service-btn:hover {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(130, 115, 255, 0.3);
-}
-
-/* Keep original CTA distinct if needed */
-.original-cta {
-   animation: fadeInUp 1s ease-out 0.9s backwards; /* Adjust delay */
-   /* Add any specific styles if it needs to look different */
-}
-
-
-/* Pop-up Overlay */
+/* Pop-up Overlay & Content */
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(19, 14, 46, 0.85); /* Slightly transparent background */
-    z-index: 1000; /* Ensure it's on top */
-    display: flex; /* Use flexbox for centering */
+    background-color: var(--bg-overlay-dark-green-085);
+    z-index: 1000;
+    display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0; /* Start hidden */
-    visibility: hidden; /* Start hidden */
-    pointer-events: none; /* Start non-interactive */
-    transition: opacity 0.3s ease, visibility 0.3s ease; /* Fade animation */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .overlay.active {
-    opacity: 1; /* Fade in */
-    visibility: visible; /* Make visible */
-    pointer-events: auto; /* Make interactive */
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
-/* Pop-up Content Box */
 .popup-content {
-    background-color: #1f1846; /* Slightly lighter than primary */
+    background-color: var(--popup-content-bg-green);
     padding: 40px;
     border-radius: 15px;
-    max-width: 800px; /* Max width */
-    width: 90%; /* Responsive width */
-    max-height: 85vh; /* Max height */
-    overflow-y: auto; /* Allow scrolling if content overflows */
+    max-width: 800px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
     position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    transform: scale(0.9) translateY(20px); /* Start slightly scaled down and moved */
-    opacity: 0; /* Start transparent */
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease; /* Engaging animation */
+    box-shadow: 0 10px 30px var(--shadow-dark-alpha04);
+    transform: scale(0.9) translateY(20px);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
 }
 
 .overlay.active .popup-content {
-    transform: scale(1) translateY(0); /* Scale up and move to final position */
-    opacity: 1; /* Fade in */
+    transform: scale(1) translateY(0);
+    opacity: 1;
 }
 
-/* Close Button */
-.close-popup {
+.close-popup { /* Combined with .close-button from original for simplicity */
     position: absolute;
     top: 15px;
     right: 15px;
     background: none;
     border: none;
-    color: var(--light-accent);
-    font-size: 30px;
+    color: var(--light-accent); /* was --pricing-text-highlight in .close-button */
+    font-size: 30px; /* was 24px */
     font-weight: bold;
     cursor: pointer;
     line-height: 1;
     padding: 0;
-    transition: color 0.2s ease, transform 0.2s ease;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
 }
 
 .close-popup:hover {
     color: var(--text-color);
+    background-color: var(--bg-overlay-light-010); /* From original .close-button hover */
     transform: scale(1.1);
 }
 
-/* Service Details Styling */
+/* Service Details Styling (inside popup) */
 .service-details {
     display: none; /* Hidden by default, JS will manage this */
     color: var(--text-color);
 }
 
 .service-details h2 {
-    color: var(--secondary-color);
+    color: var(--secondary-color-base);
     margin-bottom: 20px;
     font-size: 28px;
     text-align: center;
@@ -894,6 +794,12 @@ footer {
     font-size: 20px;
 }
 
+.service-details h4 { /* Added from later in the original file */
+    color: var(--service-details-h4-green);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
 .service-details p {
     margin-bottom: 15px;
     line-height: 1.7;
@@ -901,21 +807,21 @@ footer {
 }
 
 .service-details ul {
-    list-style: none; /* Remove default bullets */
-    padding-left: 0; /* Remove default padding */
+    list-style: none;
+    padding-left: 0;
     margin-bottom: 20px;
 }
 
 .service-details li {
-    margin-bottom: 10px;
-    padding-left: 25px; /* Indentation */
+    margin-bottom: 10px; /* Was 8px and 10px, standardized */
+    padding-left: 25px;
     position: relative;
     font-size: 16px;
 }
 
 .service-details li::before {
-    content: '✓'; /* Use checkmark or other icon */
-    color: var(--secondary-color);
+    content: '✓';
+    color: var(--secondary-color-base);
     position: absolute;
     left: 0;
     top: 1px;
@@ -923,202 +829,35 @@ footer {
 }
 
 .service-details li b {
-    color: var(--light-accent); /* Highlight key terms/pricing */
+    color: var(--light-accent);
 }
 
-/* Style for buttons within service cards to trigger popup */
-.service-btn-card {
-    background-color: transparent; /* Match card style or make distinct */
-    border: 1px solid var(--secondary-color);
-    color: var(--secondary-color);
-    padding: 8px 16px;
-    margin-top: 15px;
-    display: inline-block; /* Needed for margin-top */
-    cursor: pointer; /* Indicate clickability */
-    font-weight: 600;
-     border-radius: 50px;
-     transition: all 0.3s ease;
-}
-
-.service-btn-card:hover {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(130, 115, 255, 0.3);
-}
-
-
-/* Responsive Adjustments for Pop-up */
-@media (max-width: 768px) {
-    .popup-content {
-        padding: 25px;
-        width: 95%;
-        max-height: 90vh; /* Allow more height on mobile */
-    }
-     .service-details h2 {
-         font-size: 24px;
-     }
-      .service-details h3 {
-         font-size: 18px;
-     }
-      .service-details p, .service-details li {
-         font-size: 15px;
-     }
-
-    .service-buttons {
-        gap: 10px; /* Reduce gap */
-    }
-    .service-btn {
-        font-size: 14px;
-        padding: 8px 15px;
-    }
-}
-
-/* --- Make sure your existing responsive rules (@media) are below this line --- */
-
-/* Existing Responsive Design rules */
-@media (max-width: 992px) {
-    .hero {
-        padding: 50px 20px;
-    }
-
-    .hero-content {
-        width: 100%;
-        padding: 0;
-        text-align: center;
-    }
-
-    .hero-text { /* This class might not exist anymore or be needed */
-        max-width: 100%;
-    }
-
-    /* Keep this rule */
-     .footer-content {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-}
-
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-
-    .section-title {
-        font-size: 28px;
-    }
-
-    .hero-title {
-        font-size: 32px;
-    }
-
-    /* Keep this rule */
-    .services-grid, .pricing-cards {
-        grid-template-columns: 1fr;
-    }
-
-    /* Keep this rule */
-     .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-     /* Keep this rule */
-    .footer-links h4::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-}
-
-
-/* --- Ensure all your existing Keyframes are present --- */
-/* (Include all @keyframes rules like fadeIn, fadeInUp, pulse, etc.) */
-@keyframes widthGrow {
-    from { width: 0; }
-    to { width: 80px; }
-}
-
-@keyframes gentleShake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-3px); }
-    75% { transform: translateX(3px); }
-}
-/* ... (include all other keyframes from your original CSS) ... */
-@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-@keyframes dash { to { stroke-dashoffset: 0; } }
-@keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.7; } 100% { transform: scale(1); opacity: 1; } }
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-@keyframes trace { 0% { stroke-dasharray: 0 300; } 100% { stroke-dasharray: 300 0; } }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes scaleIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
-@keyframes float { 0% { transform: translateY(0); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0); } }
-@keyframes colorPulse { from { color: var(--secondary-color); } to { color: var(--light-accent); } }
-@keyframes rotateIn { from { opacity: 0; transform: rotate(-90deg) scale(0.3); } to { opacity: 1; transform: rotate(0) scale(1); } }
-/* Custom scrollbar for webkit browsers (Chrome, Safari, Edge) */
-::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: #1e1e30; /* Dark background color that matches your theme */
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: #4e4e8a; /* Purple-blue color that matches your theme */
-    border-radius: 5px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: #6e6eb8; /* Lighter color on hover */
-  }
-  
-  /* For Firefox */
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: #4e4e8a #1e1e30;
-  }
-
-  .service-details h4 {
-    color: #a0a0ff; /* Light purple to match your theme */
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-.service-details ul {
-    margin-bottom: 20px;
-}
-
-.service-details li {
-    margin-bottom: 8px;
-}
-
-
-/* Improved FDM 3D Printing Pricing Styles with Rounded Corners */
-.pricing-details {
-    display: block;
-    padding: 20px;
-    max-width: 900px;
+/* FDM 3D Printing Pricing Styles (inside popup/service-details) */
+.pricing-details { /* This was a top-level class, assuming it's part of service-details */
+    display: block; /* Or flex/grid as needed */
+    padding: 20px; /* May already be padded by .popup-content */
+    max-width: 900px; /* May be constrained by .popup-content */
     margin: 0 auto;
-    background-color: #1a1442;
-    color: #ffffff;
-    font-family: 'Arial', sans-serif;
+    background-color: var(--pricing-details-bg-green);
+    color: var(--text-color);
+    font-family: 'Arial', sans-serif; /* Overrides global font, consider if intended */
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px var(--shadow-dark-alpha02);
 }
 
-.pricing-title {
+/* Title for pricing table inside popup, distinct from card .pricing-title */
+.pricing-details .pricing-title-main { /* Renamed to avoid conflict with card's .pricing-title */
     font-size: 2rem;
     margin-bottom: 10px;
-    color: #ffffff;
+    color: var(--text-color); /* Was white */
     text-align: center;
 }
 
-.pricing-subtitle {
+.pricing-details .pricing-subtitle {
     font-size: 1.1rem;
     margin-bottom: 30px;
     text-align: center;
-    color: #c4c4ff;
+    color: var(--pricing-text-highlight);
 }
 
 .pricing-table {
@@ -1126,11 +865,11 @@ footer {
     overflow-x: auto;
 }
 
-.pricing-section-title {
+.pricing-section-title { /* Title for sections within the pricing table */
     font-size: 1.3rem;
-    color: #c4c4ff;
+    color: var(--pricing-text-highlight);
     margin: 25px 0 15px 0;
-    border-bottom: 1px solid #4b4273;
+    border-bottom: 1px solid var(--pricing-table-border-green);
     padding-bottom: 8px;
 }
 
@@ -1139,53 +878,42 @@ footer {
     border-collapse: separate;
     border-spacing: 0;
     margin: 15px 0;
-    border: 1px solid #4b4273;
+    border: 1px solid var(--pricing-table-border-green);
     border-radius: 10px;
     overflow: hidden;
 }
 
 .pricing-table th {
-    background-color: #2c2255;
-    color: #ffffff;
+    background-color: var(--pricing-table-header-bg-green);
+    color: var(--text-color);
     font-weight: 600;
     padding: 15px;
     text-align: left;
-    border: 1px solid #4b4273;
+    border: 1px solid var(--pricing-table-border-green); /* Should this be a different border var? */
 }
 
-.pricing-table th:first-child {
-    border-top-left-radius: 10px;
-}
-
-.pricing-table th:last-child {
-    border-top-right-radius: 10px;
-}
-
-.pricing-table tr:last-child td:first-child {
-    border-bottom-left-radius: 10px;
-}
-
-.pricing-table tr:last-child td:last-child {
-    border-bottom-right-radius: 10px;
-}
+.pricing-table th:first-child { border-top-left-radius: 10px; }
+.pricing-table th:last-child { border-top-right-radius: 10px; }
+.pricing-table tr:last-child td:first-child { border-bottom-left-radius: 10px; }
+.pricing-table tr:last-child td:last-child { border-bottom-right-radius: 10px; }
 
 .pricing-table td {
     padding: 12px 15px;
     text-align: left;
-    border: 1px solid #4b4273;
+    border: 1px solid var(--pricing-table-border-green);
 }
 
 .pricing-table tr:nth-child(odd) {
-    background-color: #2c2255;
+    background-color: var(--pricing-table-row-odd-bg-green);
 }
 
 .pricing-table tr:nth-child(even) {
-    background-color: #241c46;
+    background-color: var(--pricing-table-row-even-bg-green);
 }
 
 .price-column {
     font-weight: 600;
-    color: #c4c4ff;
+    color: var(--pricing-text-highlight);
 }
 
 .additional-factors {
@@ -1193,10 +921,10 @@ footer {
 }
 
 .additional-factors h3 {
-    color: #c4c4ff;
+    color: var(--pricing-text-highlight);
     font-size: 1.3rem;
     margin-bottom: 15px;
-    border-bottom: 1px solid #4b4273;
+    border-bottom: 1px solid var(--additional-factors-border-green);
     padding-bottom: 8px;
 }
 
@@ -1204,7 +932,7 @@ footer {
     padding-left: 20px;
     margin-bottom: 20px;
     list-style-type: disc;
-    color: #ffffff;
+    color: var(--text-color);
 }
 
 .additional-factors li {
@@ -1212,308 +940,45 @@ footer {
     line-height: 1.5;
 }
 
-/* Close button styling */
-.close-button {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 24px;
-    color: #c4c4ff;
-    background: none;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.close-button:hover {
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .pricing-table {
-        font-size: 14px;
-    }
-    
-    .pricing-table th,
-    .pricing-table td {
-        padding: 8px;
-    }
-    
-    .pricing-title {
-        font-size: 1.6rem;
-    }
-}
-
-/* Animated logo styles */
+/* Animated Logo Styles */
 .animated-logo {
-  font-size: 3.5rem;
+  font-size: 3.5rem; /* Or responsive units like clamp() or vw */
   font-weight: 700;
   margin-bottom: 1rem;
   letter-spacing: -0.5px;
-  overflow: hidden;
+  overflow: hidden; /* If needed for specific animation effects */
+  text-align: center; /* Assuming it should be centered in its container e.g. hero */
 }
 
-.logo-wrapper {
+.logo-wrapper { /* This wrapper would be in HTML around the spans */
   animation: fadeInUp 1.2s ease-out forwards;
 }
 
 .logo-text {
-  color: #ffffff;
+  color: var(--text-color);
   display: inline-block;
   animation: wave 8s ease-in-out infinite;
 }
 
 .logo-dot {
-  color: #9d4eff;
+  color: var(--logo-highlight-green3); /* Using one of the new variables */
   display: inline-block;
   animation: pulse 3s infinite;
 }
 
 .logo-3d {
-  color: #9d4eff; /* Violet color */
+  color: var(--logo-highlight-green4); /* Using one of the new variables */
   display: inline-block;
-  position: relative;
+  position: relative; /* For float animation to work well */
   animation: float 5s ease-in-out infinite;
-}
-
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.2);
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  25% {
-    transform: translateY(-4px) rotate(2deg);
-  }
-  50% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  75% {
-    transform: translateY(4px) rotate(-2deg);
-  }
-}
-
-@keyframes wave {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-5px);
-  }
-  75% {
-    transform: translateX(5px);
-  }
-}
-
-/* Animated logo styles */
-.animated-logo {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    letter-spacing: -0.5px;
-    overflow: hidden;
-  }
-  
-  .logo-wrapper {
-    animation: fadeInUp 1.2s ease-out forwards;
-  }
-  
-  .logo-text {
-    color: #ffffff;
-    display: inline-block;
-    animation: wave 8s ease-in-out infinite;
-  }
-  
-  .logo-dot {
-    color: #9d4eff;
-    display: inline-block;
-    animation: pulse 3s infinite;
-  }
-  
-  .logo-3d {
-    color: #9d4eff; /* Violet color */
-    display: inline-block;
-    position: relative;
-    animation: float 5s ease-in-out infinite;
-  }
-  
-  @keyframes fadeInUp {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.8;
-      transform: scale(1.2);
-    }
-  }
-  
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px) rotate(0deg);
-    }
-    25% {
-      transform: translateY(-4px) rotate(2deg);
-    }
-    50% {
-      transform: translateY(0px) rotate(0deg);
-    }
-    75% {
-      transform: translateY(4px) rotate(-2deg);
-    }
-  }
-  
-  @keyframes wave {
-    0%, 100% {
-      transform: translateX(0);
-    }
-    25% {
-      transform: translateX(-5px);
-    }
-    75% {
-      transform: translateX(5px);
-    }
-  }
-  
-  /* Adjust the hero title to complement the new animated logo */
-  .hero-title {
-    animation: fadeInTitle 1.2s ease-out forwards;
-    animation-delay: 0.3s;
-    opacity: 0;
-  }
-  
-  @keyframes fadeInTitle {
-    0% {
-      opacity: 0;
-      transform: translateY(15px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-
-
-  /* Social Icons Styling */
-.social-icons {
-    display: flex;
-    gap: 12px;
-    margin-top: 10px;
-}
-
-.social-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    transition: all 0.3s ease;
-}
-
-.social-icon:hover {
-    background-color: var(--primary-color, #0066cc);
-    transform: translateY(-3px);
-}
-
-.social-icon svg {
-    width: 20px;
-    height: 20px;
-}
-
-/* Responsive adjustments for footer */
-@media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column;
-        gap: 30px;
-    }
-    
-    .social-icons {
-        justify-content: center;
-    }
-}
-
-e {
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
-    animation: dash 4s linear infinite;
-}
-
-.cutter-blade {
-    animation: rotate 8s linear infinite;
-}
-
-.cutter-cut {
-    stroke-dasharray: 60;
-    stroke-dashoffset: 60;
-    animation: dash 3s linear infinite;
-}
-
-.cad-circle, .cad-dimension {
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
-    animation: dash 5s linear infinite;
-}
-
-.cad-outline, .cad-top, .cad-right, .cad-diagonal {
-    stroke-dasharray: 200;
-    stroke-dashoffset: 200;
-    animation: dash 8s linear infinite;
-}
-
-/* Intersection Observer Animation Effect */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 /* About Us Section */
 .about-us {
-    padding: 80px 0;
-    background: linear-gradient(135deg, #120d2d 0%, #120d2d 100%);
-    overflow: hidden;
+    padding: var(--section-padding);
+    background: linear-gradient(135deg, var(--black-color) 0%, var(--black-color) 100%); /* Simpler: background-color: var(--black-color); */
+    overflow: hidden; /* Good for containing animations/floats */
 }
 
 .story-container {
@@ -1530,7 +995,7 @@ e {
 
 .story-title {
     font-size: 2rem;
-    color: var(--primary-color, #333);
+    color: var(--text-color); /* Changed from primary-color as background is black */
     margin-bottom: 20px;
     position: relative;
 }
@@ -1542,13 +1007,13 @@ e {
     left: 0;
     width: 50px;
     height: 3px;
-    background: var(--accent-color, #5a8ad6);
+    background: var(--accent-color);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.5s ease;
 }
 
-.story-title.animate:after {
+.story-title.animate:after { /* JS would add .animate class when in view */
     transform: scaleX(1);
 }
 
@@ -1560,13 +1025,13 @@ e {
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.story-paragraph.animate {
+.story-paragraph.animate { /* JS would add .animate class */
     opacity: 1;
     transform: translateY(0);
 }
 
 .highlight {
-    color: var(--accent-color, #4a86e8);
+    color: var(--accent-color);
     font-weight: 600;
 }
 
@@ -1574,34 +1039,290 @@ e {
     flex: 1;
     min-width: 300px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* Or auto-fit for responsiveness */
     gap: 20px;
 }
 
 .visual-container {
-    background: #1a0f5a;
+    background: var(--visual-container-bg-green);
     border-radius: 10px;
-    padding: 40px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    padding: 40px; /* This is quite large padding, adjust if needed */
+    box-shadow: 0 5px 15px var(--shadow-dark-alpha02); /* Was rgba(0,0,0,0.05) */
     text-align: center;
     opacity: 0;
     transform: scale(0.9);
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.visual-container.animate {
+.visual-container.animate { /* JS would add .animate class */
     opacity: 1;
     transform: scale(1);
 }
 
-.animated-icon {
+.animated-icon { /* For SVGs or icons inside .visual-container */
     width: 80px;
     height: 80px;
     margin: 0 auto 15px;
-    color: var(--accent-color, #4a86e8);
+    color: var(--accent-color);
 }
 
 .visual-caption {
     font-weight: 600;
     margin: 0;
+    color: var(--text-color); /* Ensure text is visible */
+}
+
+
+/* Intersection Observer Animation Helper */
+.fade-in { /* Generic class for elements to fade in on scroll */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade-in.animate { /* Add .animate with JS */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* --- Keyframes (De-duplicated) --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float { /* Used by .tag and .logo-3d */
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-4px) rotate(2deg); } /* Adjusted for logo */
+    50% { transform: translateY(0px) rotate(0deg); }
+    75% { transform: translateY(4px) rotate(-2deg); } /* Adjusted for logo */
+}
+/* Original float for .tag - if different behavior is needed, rename one */
+/* @keyframes floatTag {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+} */
+
+
+@keyframes colorPulse { /* Used by .logo span and .footer-logo span */
+    from { color: var(--secondary-color-base); }
+    to { color: var(--light-accent); }
+}
+
+@keyframes widthGrow { /* Used by .section-title::after and .footer-links h4::after */
+    from { width: 0; }
+    to { width: 80px; } /* Footer one was 40px, consider if this should be variable or two keyframes */
+}
+
+@keyframes gentleShake { /* Used by .service-card:hover .service-icon */
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
+}
+
+@keyframes rotate { /* Used by .cutter-blade */
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes dash { /* Used by various SVG path animations */
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes pulse { /* Used by .printer-nozzle, .component-pulse, .logo-dot */
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+    /* 100% { transform: scale(1); opacity: 1; } */ /* Redundant from original */
+}
+
+@keyframes blink { /* Used by .circuit-pulse, .led-blink */
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes rotateIn {
+    from { opacity: 0; transform: rotate(-90deg) scale(0.3); }
+    to { opacity: 1; transform: rotate(0) scale(1); }
+}
+
+@keyframes wave { /* Used by .logo-text */
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes fadeInTitle { /* Used by .hero-title.animated */
+    0% { opacity: 0; transform: translateY(15px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes trace { /* Used by .trace-animation */
+    0% { stroke-dasharray: 0 300; }
+    100% { stroke-dasharray: 300 0; }
+}
+
+/* SVG Specific Animations (selectors might need adjustment based on actual SVG structure) */
+.printer-nozzle {
+    animation: pulse 2s ease-in-out infinite;
+    transform-origin: center;
+}
+
+.printer-filament { /* Generic, if there's a class .printer-filament */
+    stroke-dasharray: 100; /* Example value */
+    stroke-dashoffset: 100; /* Example value */
+    animation: dash 4s linear infinite;
+}
+
+.cutter-blade { /* Ensure your SVG has this class */
+    animation: rotate 8s linear infinite; /* Was 5s and 8s, standardized to 8s */
+    transform-origin: center; /* Important for rotation */
+}
+
+.cutter-cut { /* If there's a class for a cut line */
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+    animation: dash 3s linear infinite;
+}
+
+.cad-circle, .cad-dimension { /* For CAD drawing like animations */
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: dash 5s linear infinite;
+}
+
+.cad-outline, .cad-top, .cad-right, .cad-diagonal {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: dash 8s linear infinite;
+}
+
+.circuit-pulse { /* For circuit board like animations */
+    animation: blink 2s ease-in-out infinite;
+}
+
+.component-pulse {
+    animation: pulse 2s ease-in-out infinite;
+    transform-origin: center;
+}
+
+.trace-animation { /* Generic trace animation for paths */
+    animation: trace 3s linear infinite;
+    stroke-dasharray: 300; /* Define initial state, match keyframe */
+    stroke-width: 1;
+}
+
+.led-blink {
+    animation: blink 1s ease-in-out infinite;
+}
+
+
+/* --- Responsive Design (Merged & Tidied) --- */
+@media (max-width: 992px) {
+    .hero {
+        padding: 50px 20px; /* Keep hero padding adjustment */
+    }
+
+    .hero-content {
+        width: 100%;
+        padding: 0; /* Keep hero content padding adjustment */
+        text-align: center;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Hide nav links on smaller screens */
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .hero-title { /* Applies to original .hero-title, not .animated-logo */
+        font-size: 32px;
+    }
+    .animated-logo { /* Adjust animated logo size on mobile */
+        font-size: 2.5rem;
+    }
+
+
+    .services-grid,
+    .pricing-cards,
+    .materials-grid { /* Added materials-grid for stacking */
+        grid-template-columns: 1fr; /* Stack cards vertically */
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr; /* Stack footer sections vertically */
+        text-align: center;
+    }
+    .social-icons { /* Center social icons in footer when stacked */
+        justify-content: center;
+    }
+
+    .footer-links h4::after {
+        left: 50%; /* Center the underline for footer links */
+        transform: translateX(-50%);
+    }
+
+    /* Pop-up responsive adjustments */
+    .popup-content {
+        padding: 25px;
+        width: 95%;
+        max-height: 90vh;
+    }
+     .service-details h2 {
+         font-size: 24px;
+     }
+      .service-details h3 {
+         font-size: 18px;
+     }
+      .service-details p, .service-details li {
+         font-size: 15px;
+     }
+
+    .service-buttons { /* Hero service buttons */
+        gap: 10px;
+    }
+    .service-btn { /* Hero service buttons */
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+
+    /* Pricing table font size adjustment */
+    .pricing-table {
+        font-size: 14px;
+    }
+    .pricing-table th,
+    .pricing-table td {
+        padding: 8px;
+    }
+    .pricing-details .pricing-title-main { /* Title within pricing table popup */
+        font-size: 1.6rem;
+    }
+
+    /* About us visuals stacking */
+    .story-visuals {
+        grid-template-columns: 1fr;
+    }
 }
