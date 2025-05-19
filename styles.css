@@ -1,8 +1,8 @@
 :root {
     /* Core Theme Colors (New Green Gradient Palette) */
-    --primary-color: #0A180A;         /* Main background, very deep dark forest green */
-    --secondary-color-base: #387C3F;  /* Base for secondary accent (natural, vibrant forest green) */
-    --secondary-color: rgba(56, 124, 63, 0.75); /* Main accent with transparency (from base) */
+    --primary-color: #000000;         /* Main background, very deep dark forest green */
+    --secondary-color-base: #387c3e;  /* Base for secondary accent (natural, vibrant forest green) */
+    --secondary-color: rgba(56, 124, 63, 0.929); /* Main accent with transparency (from base) */
     --accent-color: #2C6F33;          /* Richer, slightly darker green accent */
     --light-accent: #8BC34A;         /* Lighter, brighter lime-green accent */
     --text-color: #ffffff;           /* Main text on dark backgrounds (Pure white) */
